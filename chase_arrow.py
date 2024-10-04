@@ -21,6 +21,13 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
 
+def chase_arrow():
+    global character_x, character_y, arrow_x, arrow_y
+
+
+
+    pass
+
 running = True
 character_x, character_y = TUK_WIDTH // 2,TUK_HEIGHT // 2
 arrow_x, arrow_y = randint(0, 1280), randint(0, 1024)
@@ -33,6 +40,7 @@ while running:
     arrow.draw(arrow_x, arrow_y, 50, 50)
     update_canvas()
     frame = (frame + 1) % 8
+    chase_arrow()
     handle_events()
 
 close_canvas()
