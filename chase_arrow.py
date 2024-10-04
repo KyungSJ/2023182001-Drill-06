@@ -24,7 +24,7 @@ def handle_events():
 def chase_arrow(i):
     global character_x, character_y, arrow_x, arrow_y, cycle, direction
 
-    t = i / 1000
+    t = i / 10000
     character_x = (1-t) * character_x + t * arrow_x
     character_y = (1-t) * character_y + t * arrow_y
 
