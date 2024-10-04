@@ -22,11 +22,16 @@ def handle_events():
             running = False
 
 def chase_arrow(i):
-    global character_x, character_y, arrow_x, arrow_y, cycle
+    global character_x, character_y, arrow_x, arrow_y, cycle, direction
 
     t = i / 1000
     character_x = (1-t) * character_x + t * arrow_x
     character_y = (1-t) * character_y + t * arrow_y
+
+    if character_x < arrow_x:
+        direction = 1
+    else:
+        direction = 0
 
     if character_x == arrow_x and character_y == arrow_y:
         arrow_x, arrow_y = randint(0, 1280), randint(0, 1024)
@@ -38,12 +43,15 @@ character_x, character_y = TUK_WIDTH // 2,TUK_HEIGHT // 2
 arrow_x, arrow_y = randint(0, 1280), randint(0, 1024)
 frame = 0
 cycle = 0
-
+if character_x < arrow_x:
+    direction = 1
+else:
+    direction = 0
 
 while running:
     clear_canvas()
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
-    character.clip_draw(frame * 100, 100 * 1, 100, 100, character_x, character_y)
+    character.clip_draw(frame * 100, 100 * direction, 100, 100, character_x, character_y)
     arrow.draw(arrow_x, arrow_y, 50, 50)
     update_canvas()
     frame = (frame + 1) % 8
